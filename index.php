@@ -1,35 +1,167 @@
-<?php
-$referrer = $_SERVER['HTTP_REFERER'];
-if (strpos($referrer, 'mtwspy') !== false) {
-    header("HTTP/1.0 404 Not Found");
-    echo '<center><h1>Зарабатывайте больше с AdCombo!</h1><p>Присоединяйтесь к команде <a href="https://adcombo.com">AdCombo</a> и зарабатывайте намного больше!</p></center>';
-    exit();
-}
-
-// Disable all error reporting
-//ini_set('error_reporting', 0);
-
-// Importing libraries
-require_once dirname(__FILE__) . '/vendor/autoload.php';
-// Importing config file
-require_once dirname(__FILE__) . '/config.php';
-// Importing our service functions
-require_once dirname(__FILE__) . '/lib.php';
-
-// Default content location
-$content_path = 'content/';
-
-// Load mobile detection library
-use Detection\MobileDetect;
-
-// Detecting mobile devices and rendering mobile version if needed
-if (ACLandingConfig::DETECT_MOBILE) {
-    $detect = new MobileDetect;
-    $is_mobile = $detect->isMobile();
-    if (file_exists(dirname(__FILE__) . '/content/mobile') && $is_mobile) {
-        $content_path = 'content/mobile/';
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rhino Gold Original</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: #ffffff;
+      color: #111;
+      text-align: center;
+      padding: 40px 20px;
     }
-}
 
-// Rendering index of our content
-Render_Template($content_path, $is_mobile);
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    img.hero {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #111;
+      line-height: 1.4;
+    }
+
+    h2 {
+      font-size: 22px;
+      color: #c70000;
+      font-weight: bold;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .adults-only {
+      color: red;
+      font-weight: bold;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      margin-bottom: 15px;
+    }
+
+    .arrows {
+      font-size: 28px;
+      margin: 15px 0;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    .cta-button {
+      background: linear-gradient(to bottom, #e60000, #b30000);
+      color: white;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, box-shadow 1s ease-in-out;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+      animation: glow 1.5s infinite alternate;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+      }
+      to {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+      }
+    }
+
+    .footer-text {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 22px; }
+      h2 { font-size: 18px; }
+      .cta-button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://i.imgur.com/pEKr6aH.jpeg" alt="Rhino Gold Product" class="hero" />
+
+    <h1>✔️ 100% Garanție de returnare<br />Fără riscuri!</h1>
+
+    <h2>🔥 Reducere limitată -50%<br />Comandă acum și economisește!</h2>
+
+    <div class="adults-only">⚠️ Doar pentru adulți (18+)</div>
+    <div class="arrows">⬇️⬇️⬇️</div>
+
+    <a id="cta-link" href="#" target="_blank">
+      <button class="cta-button">💬 COMANDĂ ACUM</button>
+    </a>
+
+    <div class="footer-text">🚚 Livrare rapidă & gratuită</div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const subacc = params.get('subacc');
+    const subacc2 = params.get('subacc2');
+
+    const baseFormUrl = "https://uhe3a903dcuh.uewhbgfvds.cc/?target=-7EBNQCgQAAAfCNAID73EABQEBEREKEQkKEQ1CEQ0SAAF_YWRjb21ibwEx&al=98738&ap=-1";
+    let formUrl = baseFormUrl;
+
+    if (subacc) formUrl += `&subacc=${encodeURIComponent(subacc)}`;
+    if (subacc2) formUrl += `&subacc2=${encodeURIComponent(subacc2)}`;
+
+    document.getElementById("cta-link").href = formUrl;
+
+    if (subacc2) {
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', subacc2);
+      fbq('track', 'PageView');
+      fbq('track', 'ViewContent');
+
+      const ctaButton = document.querySelector('.cta-button');
+      if (ctaButton) {
+        ctaButton.addEventListener('click', function() {
+          fbq('track', 'Lead');
+          fbq('trackCustom', 'CTAButtonClick');
+        });
+      }
+    }
+  </script>
+</body>
+</html>
